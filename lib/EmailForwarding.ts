@@ -1,4 +1,4 @@
-import AxiosClient from './AxiosClient';
+import AxiosClient from './AxiosClient.js';
 import { EmailForwarding } from './types/index.js';
 
 class NameComEmailForwarding extends AxiosClient{

@@ -1,4 +1,4 @@
-import AxiosClient from './AxiosClient';
+import AxiosClient from './AxiosClient.js';
 import { URLForwarding } from './types/index.js';
 
 

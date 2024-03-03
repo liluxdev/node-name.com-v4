@@ -1,4 +1,4 @@
-import AxiosClient from './AxiosClient';
+import AxiosClient from './AxiosClient.js';
 import { ListVanityNameserversRequest, VanityNameserver } from './types/index.js';
 
 

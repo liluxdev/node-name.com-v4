@@ -1,4 +1,4 @@
-import AxiosClient from './AxiosClient';
+import AxiosClient from './AxiosClient.js';
 
 class NameComOrders extends AxiosClient{
 

@@ -1,4 +1,4 @@
-import AxiosClient from './AxiosClient';
+import AxiosClient from './AxiosClient.js';
 import { DNSSEC } from './types/index.js';
 
 export default class NameComDNSSec extends AxiosClient {
