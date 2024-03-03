@@ -216,7 +216,7 @@ class NameComDomains extends AxiosClient {
             }
         });
     }
-    searchStream(domainName, query) {
+    searchStream(query) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axiosInstance.post(`/domains:searchStream`, Object.assign({}, query));
