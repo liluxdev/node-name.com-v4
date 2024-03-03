@@ -1,16 +1,9 @@
-import axios from 'axios';
+import AxiosClient from './AxiosClient';
 import { URLForwarding } from './types/interfaces';
 
 
-export class NameComURLForwardings {
-    axiosInstance;
-    constructor(username, token, baseUrl = 'https://api.name.com/v4') {
-        this.axiosInstance = axios.create({
-            baseURL: baseUrl,
-            auth: { username, password: token },
-            headers: { 'Content-Type': 'application/json' }
-        });
-    }
+export default class NameComURLForwardings extends AxiosClient {
+
 
 	async listURLForwardings(request:URLForwarding, perPage = 100, page = 1) {
 	

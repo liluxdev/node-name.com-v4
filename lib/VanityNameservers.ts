@@ -1,19 +1,13 @@
-import axios from 'axios';
+import AxiosClient from './AxiosClient';
+import { ListVanityNameserversRequest, VanityNameserver } from './types/interfaces';
 
 
-export class NameComVanityNameServers {
-    axiosInstance;
-    constructor(username, token, baseUrl = 'https://api.name.com/v4') {
-        this.axiosInstance = axios.create({
-            baseURL: baseUrl,
-            auth: { username, password: token },
-            headers: { 'Content-Type': 'application/json' }
-        });
-    }
-	async listVanityNameservers(request) {
+export default class NameComVanityNameservers extends AxiosClient {
+
+	async listVanityNameservers(request: ListVanityNameserversRequest) {
 		const endpoint = `/domains/${request.domainName}/vanity_nameservers`;
 
-		const params = {};
+		const params:any = {};
 		if (request.perPage !== 0) {
 			params.perPage = request.perPage;
 		}
@@ -29,7 +23,7 @@ export class NameComVanityNameServers {
 		}
 	}
 
-	async getVanityNameserver(request) {
+	async getVanityNameserver(request: any) {
 		const endpoint = `/domains/${request.domainName}/vanity_nameservers/${request.hostname}`;
 
 		try {
@@ -40,7 +34,7 @@ export class NameComVanityNameServers {
 		}
 	}
 
-	async createVanityNameserver(request) {
+	async createVanityNameserver(request: VanityNameserver) {
 		const endpoint = `/domains/${request.domainName}/vanity_nameservers`;
 
 		try {
@@ -51,7 +45,7 @@ export class NameComVanityNameServers {
 		}
 	}
 
-	async updateVanityNameserver(request) {
+	async updateVanityNameserver(request: VanityNameserver) {
 		const endpoint = `/domains/${request.domainName}/vanity_nameservers/${request.hostname}`;
 
 		try {
@@ -62,7 +56,7 @@ export class NameComVanityNameServers {
 		}
 	}
 
-	async deleteVanityNameserver(request) {
+	async deleteVanityNameserver(request: VanityNameserver) {
 		const endpoint = `/domains/${request.domainName}/vanity_nameservers/${request.hostname}`;
 
 		try {

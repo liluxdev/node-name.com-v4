@@ -1,84 +1,78 @@
-import axios from 'axios';
+import { Contact, Contacts, Domain, ErrorResponse, PricingRequest, SearchRequest, SetNameserversRequest } from './types/interfaces';
+import AxiosClient from './AxiosClient';
 
-class NameComDomains {
-    axiosInstance;
-    constructor(username, token, baseUrl = 'https://api.name.com/v4') {
-        this.axiosInstance = axios.create({
-            baseURL: baseUrl,
-            auth: { username, password: token },
-            headers: { 'Content-Type': 'application/json' }
-        });
-    }
+class NameComDomains extends AxiosClient{
 
-    async listDomains({ perPage = 0, page = 0 }) {
+
+    async listDomains(perPage = 0, page = 0) {
         try {
-            const params = new URLSearchParams({ perPage: perPage+"", page:page+"" }).toString();
+            const params = `perPage=${perPage}&page=${page}`;
             const response = await this.axiosInstance.get(`/domains?${params}`);
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error listing domains: ${error.message}`);
         }
     }
 
-    async getDomain(domainName) {
+    async getDomain(domainName:string) {
         try {
             const response = await this.axiosInstance.get(`/domains/${domainName}`);
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error getting domain details: ${error.message}`);
         }
     }
 
-    async createDomain(domainData) {
+    async createDomain(domainData: Domain) {
         try {
             const response = await this.axiosInstance.post(`/domains`, domainData);
             return response.data;
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(`Error creating domain: ${error.message}`);
         }
     }
 
-    async enableWhoisPrivacy(domainName) {
+    async enableWhoisPrivacy(domainName:string) {
         try {
             const response = await this.axiosInstance.post(`/domains/${domainName}:enableWhoisPrivacy`);
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error enabling WHOIS privacy: ${error.message}`);
         }
     }
 
-    async disableWhoisPrivacy(domainName) {
+    async disableWhoisPrivacy(domainName: string) {
         try {
             const response = await this.axiosInstance.post(`/domains/${domainName}:disableWhoisPrivacy`);
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error disabling WHOIS privacy: ${error.message}`);
         }
     }
 
-    async enableAutorenew(domainName) {
+    async enableAutorenew(domainName:string) {
         try {
             const response = await this.axiosInstance.post(`/domains/${domainName}:enableAutorenew`);
             return response.data;
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(`Error enabling autorenew: ${error.message}`);
         }
     }
 
-    async disableAutorenew(domainName) {
+    async disableAutorenew(domainName:string) {
         try {
             const response = await this.axiosInstance.post(`/domains/${domainName}:disableAutorenew`);
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error disabling autorenew: ${error.message}`);
         }
     }
 
-    async renewDomain(domainName, years) {
+    async renewDomain(domainName:string, years:number) {
         try {
             const response = await this.axiosInstance.post(`/domains/${domainName}:renew`, { years });
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error renewing domain: ${error.message}`);
         }
     }
@@ -88,108 +82,108 @@ class NameComDomains {
     // and search stream following the same pattern.
 
 
-    async getPricingForDomain(domainName, years) {
+    async getPricingForDomain(domainName:string, years:number) {
         try {
         const response = await this.axiosInstance.get(`/domains/${domainName}:getPricing`, {
             params: { years }
         });
         return response.data;
-        } catch (error) {
-        console.error('Failed to get pricing for domain:', error);
+        } catch (error:any) {
+        //console.error('Failed to get pricing for domain:', error);
         throw error;
         }
     }
     
-    async  getAuthCodeForDomain(domainName) {
+    async  getAuthCodeForDomain(domainName:string) {
         try {
         const response = await this.axiosInstance.get(`/domains/${domainName}:getAuthCode`);
         return response.data;
         } catch (error) {
-        console.error('Failed to get auth code for domain:', error);
+        //console.error('Failed to get auth code for domain:', error);
         throw error;
         }
     }
 
-    async  purchasePrivacy(domainName, privacyRequest) {
+    async  purchasePrivacy(domainName:string, privacyRequest: PricingRequest) {
         try {
           const response = await this.axiosInstance.post(`/domains/${domainName}:purchasePrivacy`, privacyRequest);
           return response.data; // Assuming this is the PrivacyResponse
         } catch (error) {
-          console.error('Error purchasing privacy:', error);
+         // console.error('Error purchasing privacy:', error);
           throw error;
         }
       }
       
-      async  setNameservers(domainName, nameservers) {
+      async  setNameservers(domainName:string, nameservers:SetNameserversRequest) {
         try {
           const response = await this.axiosInstance.post(`/domains/${domainName}:setNameservers`, nameservers);
           return response.data;
         } catch (error) {
-          console.error('Error setting nameservers:', error.response.data);
+          //console.error('Error setting nameservers:', error.response.data);
           throw error;
         }
       }
       
-      async setContacts(domainName, contacts) {
+      async setContacts(domainName:string, contacts: Contacts) {
         try {
           const response = await this.axiosInstance.post(`/domains/${domainName}:setContacts`, contacts);
           return response.data;
         } catch (error) {
-          console.error('Error setting contacts:', error.response.data);
+         // console.error('Error setting contacts:', error.response.data);
           throw error;
         }
       }
 
-      async lockDomain(domainName) {
+      async lockDomain(domainName:string) {
         try {
           const response = await this.axiosInstance.post(`/domains/${domainName}:lock`);
           return response.data;
         } catch (error) {
-          console.error('Error locking domain:', error.response.data);
+         // console.error('Error locking domain:', error.response.data);
           throw error;
         }
       }
 
-      async unlockDomain(domainName) {
+      async unlockDomain(domainName:string) {
         try {
           const response = await this.axiosInstance.post(`/domains/${domainName}:unlock`);
           return response.data;
         } catch (error) {
-          console.error('Error unlocking domain:', error.response.data);
+         // console.error('Error unlocking domain:', error.response.data);
           throw error;
         }
       }
 
-      async checkAvailability(domainName) {
+      async checkAvailability(domainName:string) {
         try {
           const response = await this.axiosInstance.get(`/domains/${domainName}:checkAvailability`);
           return response.data;
         } catch (error) {
-          console.error('Error checking domain availability:', error.response.data);
+       //   console.error('Error checking domain availability:', error.response.data);
           throw error;
         }
       }
 
-      async search(domainName, query) {
+      async search(domainName:string, query: SearchRequest) {
         try {
           const response = await this.axiosInstance.get(`/domains/${domainName}:search`, {
             params: { query }
           });
           return response.data;
         } catch (error) {
-          console.error('Error searching for domain:', error.response.data);
+     //     console.error('Error searching for domain:', error.response.data);
           throw error;
         }
       }
 
-      async searchStream(domainName, query) {
+      async searchStream(domainName:string, query:SearchRequest) {
         try {
           const response = await this.axiosInstance.get(`/domains/${domainName}:searchStream`, {
             params: { query }
           });
           return response.data;
         } catch (error) {
-          console.error('Error searching for domain:', error.response.data);
+        //  console.error('Error searching for domain:', error.response.data);
           throw error;
         }
       }

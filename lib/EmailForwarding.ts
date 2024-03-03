@@ -1,57 +1,50 @@
-import axios from 'axios';
+import AxiosClient from './AxiosClient';
 import { EmailForwarding } from './types/interfaces';
 
-class NameComEmailForwarding {
-    axiosInstance;
-    constructor(username, token, baseUrl = 'https://api.name.com/v4') {
-        this.axiosInstance = axios.create({
-            baseURL: baseUrl,
-            auth: { username, password: token },
-            headers: { 'Content-Type': 'application/json' }
-        });
-    }
+class NameComEmailForwarding extends AxiosClient{
 
-    async listEmailForwarding({ domainName }) {
+
+    async listEmailForwarding(domainName: string) {
         try {
             const response = await this.axiosInstance.get(`/domains/${domainName}/email/forwarding`);
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error listing email forwarding: ${error.message}`);
         }
     }
 
-    async getEmailForwarding({ domainName, id }) {
+    async getEmailForwarding(domainName:string, id:number ) {
         try {
             const response = await this.axiosInstance.get(`/domains/${domainName}/email/forwarding/${id}`);
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error getting email forwarding: ${error.message}`);
         }
     }
 
-    async createEmailForwarding(domainName, forwarding: EmailForwarding) {
+    async createEmailForwarding(domainName:string, forwarding: EmailForwarding) {
         try {
             const response = await this.axiosInstance.post(`/domains/${domainName}/email/forwarding`, forwarding);
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error creating email forwarding: ${error.message}`);
         }
     }
     
-    async updateEmailForwarding(domainName, id, forwarding : EmailForwarding) {
+    async updateEmailForwarding(domainName:string, id:number, forwarding : EmailForwarding) {
       try {
         const response = await this.axiosInstance.put(`/domains/${domainName}/email/forwarding/${id}`, forwarding);
         return response.data;
-      } catch (error) {
+      } catch (error:any) {
         throw new Error(`Error updating email forwarding: ${error.message}`);
       }
     }
 
-    async deleteEmailForwarding(domainName, id) {
+    async deleteEmailForwarding(domainName:string, id:number) {
         try {
             const response = await this.axiosInstance.delete(`/domains/${domainName}/email/forwarding/${id}`);
             return response.data;
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(`Error deleting email forwarding: ${error.message}`);
         }
     }
