@@ -224,7 +224,7 @@ class NameComDomains extends AxiosClient {
     }
   }
 
-  async searchStream(domainName: string, query: SearchRequest): Promise<SearchResponse> {
+  async searchStream(query: SearchRequest): Promise<SearchResponse> {
     try {
       const response = await this.axiosInstance.post(
         `/domains:searchStream`,
