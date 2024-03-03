@@ -1,6 +1,8 @@
 import {
   Contact,
   Contacts,
+  CreateDomainRequest,
+  CreateDomainResponse,
   Domain,
   ErrorResponse,
   ListDomainsResponse,
@@ -36,10 +38,10 @@ class NameComDomains extends AxiosClient {
     }
   }
 
-  async createDomain(domainData: Domain) {
+  async createDomain(domainData: CreateDomainRequest) : Promise<CreateDomainResponse> {
     try {
       const response = await this.axiosInstance.post(`/domains`, domainData);
-      return response.data;
+      return response.data as CreateDomainResponse;
     } catch (error: any) {
       throw new Error(`Error creating domain: ${error.message}`);
     }
