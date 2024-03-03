@@ -1,5 +1,5 @@
 import AxiosClient from './AxiosClient';
-import { EmailForwarding } from './types/interfaces';
+import { EmailForwarding } from './types/';
 
 class NameComEmailForwarding extends AxiosClient{
 

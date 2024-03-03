@@ -1,5 +1,5 @@
 import AxiosClient from './AxiosClient';
-import { ListVanityNameserversRequest, VanityNameserver } from './types/interfaces';
+import { ListVanityNameserversRequest, VanityNameserver } from './types/';
 
 
 export default class NameComVanityNameservers extends AxiosClient {

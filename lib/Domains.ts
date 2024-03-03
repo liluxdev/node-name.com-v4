@@ -1,4 +1,4 @@
-import { Contact, Contacts, Domain, ErrorResponse, PricingRequest, SearchRequest, SetNameserversRequest } from './types/interfaces';
+import { Contact, Contacts, Domain, ErrorResponse, PricingRequest, SearchRequest, SetNameserversRequest } from './types/';
 import AxiosClient from './AxiosClient';
 
 class NameComDomains extends AxiosClient{

@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.NameComVanityNameservers = exports.NameComTransfers = exports.NameComURLForwarding = exports.NameComOrders = exports.NameComEmailForwarding = exports.NameComDomains = exports.NameComDNS = void 0;
+var DNS_1 = require("./DNS");
+Object.defineProperty(exports, "NameComDNS", { enumerable: true, get: function () { return __importDefault(DNS_1).default; } });
+var Domains_1 = require("./Domains");
+Object.defineProperty(exports, "NameComDomains", { enumerable: true, get: function () { return __importDefault(Domains_1).default; } });
+var EmailForwarding_1 = require("./EmailForwarding");
+Object.defineProperty(exports, "NameComEmailForwarding", { enumerable: true, get: function () { return __importDefault(EmailForwarding_1).default; } });
+var Orders_1 = require("./Orders");
+Object.defineProperty(exports, "NameComOrders", { enumerable: true, get: function () { return __importDefault(Orders_1).default; } });
+var URLForwarding_1 = require("./URLForwarding");
+Object.defineProperty(exports, "NameComURLForwarding", { enumerable: true, get: function () { return __importDefault(URLForwarding_1).default; } });
+var Transfers_1 = require("./Transfers");
+Object.defineProperty(exports, "NameComTransfers", { enumerable: true, get: function () { return __importDefault(Transfers_1).default; } });
+var VanityNameservers_1 = require("./VanityNameservers");
+Object.defineProperty(exports, "NameComVanityNameservers", { enumerable: true, get: function () { return __importDefault(VanityNameservers_1).default; } });

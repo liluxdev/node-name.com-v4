@@ -1,5 +1,5 @@
 import AxiosClient from './AxiosClient';
-import { DNSSEC } from './types/interfaces';
+import { DNSSEC } from './types/';
 
 export default class NameComDNSSec extends AxiosClient {
 

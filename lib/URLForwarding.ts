@@ -1,5 +1,5 @@
 import AxiosClient from './AxiosClient';
-import { URLForwarding } from './types/interfaces';
+import { URLForwarding } from './types/';
 
 
 export default class NameComURLForwardings extends AxiosClient {
