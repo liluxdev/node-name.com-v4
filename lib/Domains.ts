@@ -205,10 +205,10 @@ class NameComDomains extends AxiosClient {
     }
   }
 
-  async search(domainName: string, query: SearchRequest) {
+  async search(query: SearchRequest) {
     try {
       const response = await this.axiosInstance.get(
-        `/domains/${domainName}:search`,
+        `/domains/:search`,
         {
           params: { query },
         }
@@ -223,7 +223,7 @@ class NameComDomains extends AxiosClient {
   async searchStream(domainName: string, query: SearchRequest) {
     try {
       const response = await this.axiosInstance.get(
-        `/domains/${domainName}:searchStream`,
+        `/domains/:searchStream`,
         {
           params: { query },
         }
