@@ -1,4 +1,4 @@
-import AxiosClient from './AxiosClient';
+import AxiosClient from './AxiosClient.js';
 import { Record } from './types/index.js';
 
 export default class NamceComDNS extends AxiosClient{

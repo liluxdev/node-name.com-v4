@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const AxiosClient_1 = __importDefault(require("./AxiosClient"));
-class NamceComDNS extends AxiosClient_1.default {
+const AxiosClient_js_1 = __importDefault(require("./AxiosClient.js"));
+class NamceComDNS extends AxiosClient_js_1.default {
     listRecords(domainName, perPage = 0, page = 0) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
