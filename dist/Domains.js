@@ -204,10 +204,10 @@ class NameComDomains extends AxiosClient {
             }
         });
     }
-    search(domainName, query) {
+    search(query) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.get(`/domains/${domainName}:search`, {
+                const response = yield this.axiosInstance.get(`/domains/:search`, {
                     params: { query },
                 });
                 return response.data;
@@ -221,7 +221,7 @@ class NameComDomains extends AxiosClient {
     searchStream(domainName, query) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.get(`/domains/${domainName}:searchStream`, {
+                const response = yield this.axiosInstance.get(`/domains/:searchStream`, {
                     params: { query },
                 });
                 return response.data;

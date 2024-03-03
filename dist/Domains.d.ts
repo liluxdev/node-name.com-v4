@@ -17,7 +17,7 @@ declare class NameComDomains extends AxiosClient {
     lockDomain(domainName: string): Promise<any>;
     unlockDomain(domainName: string): Promise<any>;
     checkAvailability(domainName: string): Promise<any>;
-    search(domainName: string, query: SearchRequest): Promise<any>;
+    search(query: SearchRequest): Promise<any>;
     searchStream(domainName: string, query: SearchRequest): Promise<any>;
 }
 export default NameComDomains;

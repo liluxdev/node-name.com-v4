@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { NameComDomains } from "./index.js";
 export class LocalBaseConfiguration {
 }
-LocalBaseConfiguration.NAMECOM_API_PASS = '7f0aac1a1f4165fb4648a730422f5592576d7ca0';
-LocalBaseConfiguration.NAMECOM_API_USER = 'webtier-test';
+LocalBaseConfiguration.NAMECOM_API_PASS = '<your password token here>';
+LocalBaseConfiguration.NAMECOM_API_USER = 'yourusername-test';
 LocalBaseConfiguration.NAMECOM_API_URL = 'https://api.dev.name.com';
 const runTests = () => __awaiter(void 0, void 0, void 0, function* () {
     const domainClient = new NameComDomains(LocalBaseConfiguration.NAMECOM_API_USER, LocalBaseConfiguration.NAMECOM_API_PASS, LocalBaseConfiguration.NAMECOM_API_URL);
