@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import AxiosClient from "./AxiosClient.js";
+import axios from "axios";
 class NameComDomains extends AxiosClient {
     listDomains(perPage = 0, page = 0) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -219,8 +220,17 @@ class NameComDomains extends AxiosClient {
     searchStream(query) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.post(`/domains:searchStream`, Object.assign({}, query));
-                return response.data;
+                const response = yield axios({
+                    method: 'post',
+                    url: this.baseUrl + '/domains:searchStream',
+                    data: Object.assign({}, query),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Basic ' + Buffer.from('username:token').toString('base64'),
+                    },
+                    responseType: 'stream' // This is important to handle the response as a stream
+                });
+                return response;
             }
             catch (error) {
                 //  console.error('Error searching for domain:', error.response.data);
