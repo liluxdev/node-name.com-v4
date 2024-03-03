@@ -4,6 +4,7 @@ import path from "path";
 function addJsExtension(dirPath) {
   fs.readdirSync(dirPath).forEach((file) => {
     const filePath = path.join(dirPath, file);
+    console.log("Processing file: " + filePath);
     if (fs.statSync(filePath).isDirectory()) {
       addJsExtension(filePath);
     } else if (filePath.endsWith(".d.ts")) {
@@ -12,34 +13,35 @@ function addJsExtension(dirPath) {
       const matchedImportsFroms = content.match(/from \'(\.\/[^\']*)'/g);
       let matchedImportFiles = matchedImportsFroms?.map(
         (match) =>{
-            console.log("match", match);
+            //console.log("match", match);
             const regexp = /'(\.\/[^\']*)'/.exec(match);
             if (regexp) {
-              console.log("regexp(1)", regexp[1]);
+             // console.log("regexp(1)", regexp[1]);
               return regexp[1];
             }else{
                 return "-";
             }
         } 
       );
-      console.log("Matched", matchedImportFiles);
+     // console.log("Matched", matchedImportFiles);
       matchedImportFiles?.forEach((matchedImportFile) => {
         //if file exists
         const absoluteImportPath =
           path.dirname(filePath) + "/"+matchedImportFile + ".js";
-        console.log("absolute path:" + absoluteImportPath);
+        //console.log("absolute path:" + absoluteImportPath);
         if (fs.existsSync(absoluteImportPath)) {
-          console.log("Js existing, replacing import...");
-          console.log("Content before", content);
+          //console.log("Js existing, replacing import...");
+          //console.log("Content before", content);
           content = content.replace("from '"+matchedImportFile+"'", "from '"+matchedImportFile+".js'");
-          console.log("Content", content);
+        //console.log("Content", content);
           replaceHappened = true;
         }
       });
 
       if (replaceHappened){
         fs.writeFileSync(filePath, content, "utf8");
-        console.log("File written to " + filePath +"\n\n"+content);
+        console.log("File written to " + filePath);
+        //console.log("File written to " + filePath +"\n\n"+content);
       }
     }
   });
