@@ -1,7 +1,7 @@
 {
     "name": "namecomv4",
-    "version": "1.2.0",
-    "description": "A Node.js wrapper for Name.com V4 API.",
+    "version": "1.2.1",
+    "description": "A Node.js library wrapper for Name.com's V4 API, designed to simplify domain management tasks such as querying domain information, managing DNS records, and handling domain registration and transfer.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "type": "module",
@@ -14,7 +14,8 @@
         "API",
         "wrapper",
         "domain",
-        "DNS"
+        "DNS",
+        "reseller"
     ],
     "author": "",
     "license": "ISC",
