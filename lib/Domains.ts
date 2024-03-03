@@ -12,6 +12,7 @@ import {
   SetNameserversRequest,
 } from "./types/index.js";
 import AxiosClient from "./AxiosClient.js";
+import axios from "axios";
 
 class NameComDomains extends AxiosClient {
   async listDomains(perPage = 0, page = 0) : Promise<ListDomainsResponse> {
@@ -224,15 +225,22 @@ class NameComDomains extends AxiosClient {
     }
   }
 
-  async searchStream(query: SearchRequest): Promise<SearchResponse> {
+  async searchStream(query: SearchRequest): Promise<any> {
     try {
-      const response = await this.axiosInstance.post(
-        `/domains:searchStream`,
-        {
-          ...query,
-        }
-      );
-      return response.data as SearchResponse;
+      const response = await
+      axios({
+        method: 'post',
+        url: this.baseUrl+'/domains:searchStream',
+        data: {
+          ...query
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + Buffer.from('username:token').toString('base64'),
+        },
+        responseType: 'stream' // This is important to handle the response as a stream
+      });
+      return response;
     } catch (error) {
       //  console.error('Error searching for domain:', error.response.data);
       throw error;
