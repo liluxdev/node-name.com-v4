@@ -27,7 +27,7 @@ Here's a quick example to get you started:
 ```typescript
 import { NameComDomains } from "namecomv4";
 
-const domainClient = new NameComDomains("username", "token");
+const domainClient = new NameComDomains("username-test", "token", "https://api.dev.name.com");
 domainClient.listDomains().then((domains: any) => {
   console.log(domains);
 });
@@ -35,3 +35,12 @@ domainClient.listDomains().then((domains: any) => {
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+
+## Original API Docs
+
+https://www.name.com/api-docs
+
+## Get Access Token
+
+https://www.name.com/account/settings/api
