@@ -7,12 +7,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import AxiosClient from './AxiosClient.js';
+import AxiosClient from "./AxiosClient.js";
 class NameComDomains extends AxiosClient {
     listDomains(perPage = 0, page = 0) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const params = `perPage=${perPage}&page=${page}`;
+                let params = "";
+                if (page > 0 && perPage > 0) {
+                    params = `?perPage=${perPage}&page=${page}`;
+                }
+                console.log("Axios: " + this.axiosInstance);
+                console.log("Params: " + params);
                 const response = yield this.axiosInstance.get(`/domains?${params}`);
                 return response.data;
             }
@@ -98,14 +103,14 @@ class NameComDomains extends AxiosClient {
             }
         });
     }
-    // Implement additional methods for get pricing, get auth code, purchase privacy, 
-    // set nameservers, set contacts, lock/unlock domain, check availability, search, 
+    // Implement additional methods for get pricing, get auth code, purchase privacy,
+    // set nameservers, set contacts, lock/unlock domain, check availability, search,
     // and search stream following the same pattern.
     getPricingForDomain(domainName, years) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axiosInstance.get(`/domains/${domainName}:getPricing`, {
-                    params: { years }
+                    params: { years },
                 });
                 return response.data;
             }
@@ -203,7 +208,7 @@ class NameComDomains extends AxiosClient {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axiosInstance.get(`/domains/${domainName}:search`, {
-                    params: { query }
+                    params: { query },
                 });
                 return response.data;
             }
@@ -217,7 +222,7 @@ class NameComDomains extends AxiosClient {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axiosInstance.get(`/domains/${domainName}:searchStream`, {
-                    params: { query }
+                    params: { query },
                 });
                 return response.data;
             }
