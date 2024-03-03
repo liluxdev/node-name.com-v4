@@ -207,13 +207,13 @@ class NameComDomains extends AxiosClient {
     search(query) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.get(`/domains/:search`, {
-                    params: { query },
+                const response = yield this.axiosInstance.post(`/domains:search`, {
+                    body: query,
                 });
                 return response.data;
             }
             catch (error) {
-                //     console.error('Error searching for domain:', error.response.data);
+                // console.error('Error searching for domain:', error.response.data);
                 throw error;
             }
         });
@@ -221,8 +221,8 @@ class NameComDomains extends AxiosClient {
     searchStream(domainName, query) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axiosInstance.get(`/domains/:searchStream`, {
-                    params: { query },
+                const response = yield this.axiosInstance.post(`/domains:searchStream`, {
+                    body: query,
                 });
                 return response.data;
             }

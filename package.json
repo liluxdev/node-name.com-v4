@@ -1,13 +1,14 @@
 {
     "name": "namecomv4",
-    "version": "1.2.5",
+    "version": "1.2.8",
     "description": "A Node.js library wrapper for Name.com's V4 API, designed to simplify domain management tasks such as querying domain information, managing DNS records, and handling domain registration and transfer.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "type": "module",
     "scripts": {
         "test": "npm run build; node dist/test.js",
-        "build": "tsc && node postbuild.js"
+        "build": "tsc && node postbuild.js",
+        "publish": "npm run build && npm publish"
     },
     "keywords": [
         "name.com",

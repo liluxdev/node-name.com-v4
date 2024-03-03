@@ -3,14 +3,16 @@ import {
   Contacts,
   Domain,
   ErrorResponse,
+  ListDomainsResponse,
   PricingRequest,
   SearchRequest,
+  SearchResponse,
   SetNameserversRequest,
 } from "./types/index.js";
 import AxiosClient from "./AxiosClient.js";
 
 class NameComDomains extends AxiosClient {
-  async listDomains(perPage = 0, page = 0) {
+  async listDomains(perPage = 0, page = 0) : Promise<ListDomainsResponse> {
     try {
       let params = "";
       if (page > 0 && perPage > 0) {
@@ -19,7 +21,7 @@ class NameComDomains extends AxiosClient {
       console.log("Axios: "+this.axiosInstance);
       console.log("Params: "+params);
       const response = await this.axiosInstance.get(`/domains?${params}`);
-      return response.data;
+      return response.data as ListDomainsResponse;
     } catch (error: any) {
       throw new Error(`Error listing domains: ${error.message}`);
     }
@@ -205,30 +207,30 @@ class NameComDomains extends AxiosClient {
     }
   }
 
-  async search(query: SearchRequest) {
+  async search(query: SearchRequest): Promise<SearchResponse> {
     try {
-      const response = await this.axiosInstance.get(
-        `/domains/:search`,
+      const response = await this.axiosInstance.post(
+        `/domains:search`,
         {
-          params: { query },
+          body: query,
         }
       );
-      return response.data;
+      return response.data as SearchResponse;
     } catch (error) {
-      //     console.error('Error searching for domain:', error.response.data);
+      // console.error('Error searching for domain:', error.response.data);
       throw error;
     }
   }
 
-  async searchStream(domainName: string, query: SearchRequest) {
+  async searchStream(domainName: string, query: SearchRequest): Promise<SearchResponse> {
     try {
-      const response = await this.axiosInstance.get(
-        `/domains/:searchStream`,
+      const response = await this.axiosInstance.post(
+        `/domains:searchStream`,
         {
-          params: { query },
+          body: query,
         }
       );
-      return response.data;
+      return response.data as SearchResponse;
     } catch (error) {
       //  console.error('Error searching for domain:', error.response.data);
       throw error;
