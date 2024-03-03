@@ -1,4 +1,4 @@
-import { Contacts, Domain, PricingRequest, SearchRequest, SetNameserversRequest } from './types/.js';
+import { Contacts, Domain, PricingRequest, SearchRequest, SetNameserversRequest } from './types/';
 import AxiosClient from './AxiosClient.js';
 declare class NameComDomains extends AxiosClient {
     listDomains(perPage?: number, page?: number): Promise<any>;

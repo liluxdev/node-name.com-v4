@@ -1,5 +1,5 @@
 import AxiosClient from './AxiosClient.js';
-import { URLForwarding } from './types/.js';
+import { URLForwarding } from './types/';
 export default class NameComURLForwardings extends AxiosClient {
     listURLForwardings(request: URLForwarding, perPage?: number, page?: number): Promise<any>;
     getURLForwarding(request: URLForwarding): Promise<any>;

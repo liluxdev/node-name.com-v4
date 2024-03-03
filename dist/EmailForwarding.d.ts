@@ -1,5 +1,5 @@
 import AxiosClient from './AxiosClient.js';
-import { EmailForwarding } from './types/.js';
+import { EmailForwarding } from './types/';
 declare class NameComEmailForwarding extends AxiosClient {
     listEmailForwarding(domainName: string): Promise<any>;
     getEmailForwarding(domainName: string, id: number): Promise<any>;
