@@ -1,4 +1,4 @@
-import { Transfer } from './types/';
+import { Transfer } from './types/index.js';
 import AxiosClient from './AxiosClient.js';
 export default class NameComTransfers extends AxiosClient {
     listTransfers(perPage?: number, page?: number): Promise<any>;

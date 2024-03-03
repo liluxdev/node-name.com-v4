@@ -1,5 +1,5 @@
 import AxiosClient from './AxiosClient.js';
-import { DNSSEC } from './types/';
+import { DNSSEC } from './types/index.js';
 export default class NameComDNSSec extends AxiosClient {
     listDNSSECs(domainName: string): Promise<any>;
     getDNSSEC(domainName: string, digest: string): Promise<any>;
