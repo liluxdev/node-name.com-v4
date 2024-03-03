@@ -212,7 +212,7 @@ class NameComDomains extends AxiosClient {
       const response = await this.axiosInstance.post(
         `/domains:search`,
         {
-          body: query,
+          ...query,
         }
       );
       return response.data as SearchResponse;
@@ -227,7 +227,7 @@ class NameComDomains extends AxiosClient {
       const response = await this.axiosInstance.post(
         `/domains:searchStream`,
         {
-          body: query,
+          ...query,
         }
       );
       return response.data as SearchResponse;
