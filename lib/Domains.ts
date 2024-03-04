@@ -9,6 +9,7 @@ import {
   PricingRequest,
   SearchRequest,
   SearchResponse,
+  SetContactsRequest,
   SetNameserversRequest,
 } from "./types/index.js";
 import AxiosClient from "./AxiosClient.js";
@@ -161,7 +162,7 @@ class NameComDomains extends AxiosClient {
     }
   }
 
-  async setContacts(domainName: string, contacts: Contacts) {
+  async setContacts(domainName: string, contacts: SetContactsRequest) {
     try {
       const response = await this.axiosInstance.post(
         `/domains/${domainName}:setContacts`,
