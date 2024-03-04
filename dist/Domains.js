@@ -19,7 +19,7 @@ class NameComDomains extends AxiosClient {
                 }
                 console.log("Axios: " + this.axiosInstance);
                 console.log("Params: " + params);
-                const response = yield this.axiosInstance.get(`/domains?${params}`);
+                const response = yield this.axiosInstance.get(`/domains${params}`);
                 return response.data;
             }
             catch (error) {
