@@ -226,7 +226,7 @@ class NameComDomains extends AxiosClient {
                     data: Object.assign({}, query),
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Basic ' + Buffer.from('username:token').toString('base64'),
+                        'Authorization': 'Basic ' + Buffer.from(this.username + ':' + this.token).toString('base64'),
                     },
                     responseType: 'stream' // This is important to handle the response as a stream
                 });
