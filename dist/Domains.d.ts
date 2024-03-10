@@ -1,4 +1,4 @@
-import { Contacts, CreateDomainRequest, CreateDomainResponse, ListDomainsResponse, PricingRequest, SearchRequest, SearchResponse, SetNameserversRequest } from "./types/index.js";
+import { CreateDomainRequest, CreateDomainResponse, ListDomainsResponse, PricingRequest, SearchRequest, SearchResponse, SetContactsRequest, SetNameserversRequest } from "./types/index.js";
 import AxiosClient from "./AxiosClient.js";
 declare class NameComDomains extends AxiosClient {
     listDomains(perPage?: number, page?: number): Promise<ListDomainsResponse>;
@@ -13,7 +13,7 @@ declare class NameComDomains extends AxiosClient {
     getAuthCodeForDomain(domainName: string): Promise<any>;
     purchasePrivacy(domainName: string, privacyRequest: PricingRequest): Promise<any>;
     setNameservers(domainName: string, nameservers: SetNameserversRequest): Promise<any>;
-    setContacts(domainName: string, contacts: Contacts): Promise<any>;
+    setContacts(domainName: string, contacts: SetContactsRequest): Promise<any>;
     lockDomain(domainName: string): Promise<any>;
     unlockDomain(domainName: string): Promise<any>;
     checkAvailability(domainName: string): Promise<any>;

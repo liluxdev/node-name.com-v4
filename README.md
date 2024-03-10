@@ -33,6 +33,42 @@ domainClient.listDomains().then((domains: any) => {
 });
 ```
 
+### Testing a search & purchase
+```typescript
+        const domainClient = new NameComDomains(LocalBaseConfiguration.NAMECOM_API_USER, LocalBaseConfiguration.NAMECOM_API_PASS, LocalBaseConfiguration.NAMECOM_API_URL);
+                domainClient.listDomains().then((domains: any) => {
+                    console.log(domains);
+        });
+
+        domainClient.search( {keyword: "exampleeeee"}).then((searchResponse: SearchResponse) => {
+            console.log("[TEST] Searched domain results");
+            if (searchResponse.results && searchResponse.results.length > 0){
+                console.log("[TEST] has results");
+                searchResponse.results.forEach((searchResult: SearchResult) => {
+                    console.log(JSON.stringify(searchResult));
+                    console.log("[TEST]"+searchResult.domainName+ " purchasable:"+ searchResult.purchasable + " purchase price:"+ searchResult.purchasePrice);
+                    if (searchResult.purchasable){
+                        console.log("[TEST]"+"Purchasing domain "+ searchResult.domainName);
+                        const purchaseDomain: CreateDomainRequest = {
+                            domain: {domainName:searchResult.domainName},
+                            purchasePrice: searchResult.purchasePrice,
+                            purchaseType: searchResult.purchaseType,
+
+                        };
+                        domainClient.createDomain(purchaseDomain).then((purchaseResponse: CreateDomainResponse) => {
+                            console.log("[TEST]"+"Purchase response:"+ JSON.stringify(purchaseResponse.domain) +" total paid"+ purchaseResponse.totalPaid);
+                            if (purchaseResponse.domain){
+                                console.log("[TEST]"+"Domain purchased"+JSON.stringify(purchaseResponse));
+                            }
+                        });
+                        return;
+                    }
+                    console.log(searchResult.purchasable);
+                });
+            }
+        });
+```
+
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 

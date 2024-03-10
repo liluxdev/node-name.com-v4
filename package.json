@@ -1,10 +1,14 @@
 {
     "name": "namecomv4",
-    "version": "1.3.9",
+    "version": "1.3.10",
     "description": "A Node.js library wrapper for Name.com's V4 API, designed to simplify domain management tasks such as querying domain information, managing DNS records, and handling domain registration and transfer.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/liluxdev/node-name.com-v4.git"
+    },
     "scripts": {
         "test": "npm run build; node dist/test.js",
         "build": "tsc && node postbuild.js",
